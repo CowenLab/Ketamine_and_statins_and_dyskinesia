@@ -90,22 +90,23 @@ ggplot(D_long,aes(Day, AIMS, color = condition)) + geom_boxplot() + geom_jitter(
 ggplot(D_long14_K_KP,aes(condition, AIMS)) + geom_boxplot() + geom_jitter(width = .14, size = 4)
 # Do the stats...
 x <- D_long14_K_KP %>% filter(condition == 'K')
-shapiro.test(x$AIMS) # test for normality. If p > 0.05 it's normal enough.
+shapiro.test(x$AIMS) # test for normality. If p > 0.05 it's normal enough but field generally uses non-parametric so.
 # As of 3/2023, it is.
-t.test(AIMS~condition,data = D_long14_K_KP) # was considering Wilcox, but these data do not look bounded (the other groups have multiple points clustered at 0 or 40 - but not these.)
+# We are using non-parametric - done later
+#t.test(AIMS~condition,data = D_long14_K_KP) # was considering Wilcox, but these data do not look bounded (the other groups have multiple points clustered at 0 or 40 - but not these.)
 
 # look at K, KP, and V (I think that this is the full comparison - really should include vehicle.)
-
-mod = aov(AIMS ~ condition, data = D_long14_K_KP_V)
-summary(mod)
-TukeyHSD(mod, conf.level=.95)
+# We are using non-parametric - done later
+#mod = aov(AIMS ~ condition, data = D_long14_K_KP_V)
+#summary(mod)
+#TukeyHSD(mod, conf.level=.95)
 
 
 ggplot(data = D_long14_K_KP_V, aes(condition, AIMS)) + geom_boxplot() + geom_jitter(width = .14, size = 4)
-
-mod = aov(AIMS ~ condition, data = D_long %>% filter(Day == 'Day 0', condition %in% c('V', 'K', 'KP')))
-summary(mod)
-TukeyHSD(mod, conf.level=.95)
+# We are using non-parametric - done later
+#mod = aov(AIMS ~ condition, data = D_long %>% filter(Day == 'Day 0', condition %in% c('V', 'K', 'KP')))
+#summary(mod)
+#TukeyHSD(mod, conf.level=.95)
 
 D <-D_long %>% filter(Day == 'Day 7', condition %in% c('V')) 
 
